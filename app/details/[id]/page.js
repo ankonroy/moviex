@@ -97,10 +97,10 @@ export default async function details({ params }) {
   );
 }
 
-export async function generateStaticParams() {
-  const posts = await fetchData("now_playing", 1, "");
+// export async function generateStaticParams() {
+//   const posts = await fetchData("now_playing", 1, "");
 
-  return posts.map((post) => ({
-    id: post.id.toString(),
-  }));
-}
+//   return posts.map((post) => ({
+//     id: post.id.toString(),
+//   }));
+// }
