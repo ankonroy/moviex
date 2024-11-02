@@ -4,10 +4,28 @@ import Image from "next/image";
 import Navbar from "@/components/navbar";
 import fetchData, { fetchAgain, fetchDetails } from "@/utils/util";
 
+// export async function getServerSideProps({ params }) {
+//   const { id } = params;
+//   const detailLink = `https://api.themoviedb.org/3/movie/${id}?`;
+
+//   const data = await fetchDetails(detailLink); // Fetch the movie data
+
+//   // Handle the case where data is unavailable or invalid
+//   if (!data) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+
+//   return {
+//     props: { data }, // Pass the data as props to the component
+//   };
+// }
+
 export default async function details({ params }) {
   const { id } = await params;
   //   console.log(params);
-  const detailLink = `https://api.themoviedb.org/3/movie/${id}?api_key=ab225bf836e9ac7a9c8ca1f03b741a66`;
+  const detailLink = `https://api.themoviedb.org/3/movie/${id}?`;
   const data = await fetchDetails(detailLink);
   const bdImage = data?.backdrop_path
     ? `https://image.tmdb.org/t/p/original/${data?.backdrop_path}`
@@ -103,5 +121,5 @@ export async function generateStaticParams() {
   //   return posts.map((post) => ({
   //     id: post.id.toString(),
   //   }));
-  return [{ id: "" }];
+  return [];
 }
