@@ -2,7 +2,7 @@ import Link from "next/link";
 import satoshi from "@/public/img/satoshi.jpg";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
-import { fetchDetails } from "@/utils/util";
+import fetchData, { fetchDetails } from "@/utils/util";
 
 export default async function details({ params }) {
   const { id } = await params;
@@ -95,4 +95,13 @@ export default async function details({ params }) {
       </section>
     </>
   );
+}
+
+export async function generateStaticParams() {
+  //   const posts = await fetchData();
+
+  //   return posts.map((post) => ({
+  //     id: post.id.toString(),
+  //   }));
+  return [];
 }
