@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
+// import { ThemeProvider } from "next-themes";
 
 // import Navbar from "@/components/navbar";
 // import Logo from "@/components/logo";
@@ -28,15 +28,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
+        {/* <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem={true}
-        >
-          <section className="h-screen dark:bg-gray-900 dark:text-gray-100">
-            {children}
-          </section>
-        </ThemeProvider>
+        > */}
+        <section className="h-screen dark:bg-gray-900 dark:text-gray-100">
+          {children}
+        </section>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

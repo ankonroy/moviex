@@ -3,7 +3,7 @@ import Navbar from "@/components/navbar";
 // import Logo from "@/components/logo";
 import Modebtn from "@/components/modebtn";
 import Link from "next/link";
-import { ThemeProvider } from "next-themes";
+// import { ThemeProvider } from "next-themes";
 // import { useRouter } from "next/navigation";
 // import Home from "../page";
 
@@ -35,25 +35,25 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
+        {/* <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem={true}
-        >
-          <section className="h-screen dark:bg-gray-900 dark:text-gray-100">
-            <Navbar>
-              <div className="flex items-center space-x-4">
-                <Link href="/">
-                  <button className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:outline-none">
-                    Go Back
-                  </button>
-                </Link>
-              </div>
-              <Modebtn />
-            </Navbar>
-            {children}
-          </section>
-        </ThemeProvider>
+        > */}
+        <section className="h-screen dark:bg-gray-900 dark:text-gray-100">
+          <Navbar>
+            <div className="flex items-center space-x-4">
+              <Link href="/">
+                <button className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:outline-none">
+                  Go Back
+                </button>
+              </Link>
+            </div>
+            <Modebtn />
+          </Navbar>
+          {children}
+        </section>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );
