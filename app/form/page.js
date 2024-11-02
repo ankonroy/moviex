@@ -4,10 +4,11 @@ import Input from "@/components/input";
 import Navbar from "@/components/navbar";
 import Submitbtn from "@/components/submitbtn";
 import Textarea from "@/components/textarea";
+// import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function form() {
+export default function Form() {
   const [comments, setComments] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,6 +24,8 @@ export default function form() {
       setMessage("");
     }
   };
+
+  console.log(name);
 
   return (
     <>

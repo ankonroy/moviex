@@ -1,35 +1,55 @@
-export default async function fetchData() {
-  const url =
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYjIyNWJmODM2ZTlhYzdhOWM4Y2ExZjAzYjc0MWE2NiIsIm5iZiI6MTczMDIwNTI1MS40MjkwOSwic3ViIjoiNjQ1YTIxOWIxNTZjYzcwMGUzOWU4YjM0Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.EZ8gBdTfpd6x6Y7l8cKeg9WTMIkMJhXe8-q4KE1ZlT0",
-    },
-  };
+const TMBD_TOKEN = process.env.NEXT_PUBLIC_TMDB_TOKEN;
+export default async function fetchData(
+  keyword = "now_playing",
+  pageno = 1,
+  searchword = ""
+) {
+  try {
+    let url = `https://api.themoviedb.org/3/movie/${keyword}?language=en-US&page=${pageno}`;
 
-  let data = await fetch(url, options);
-  let posts = await data.json();
+    if (searchword !== "") {
+      url = `https://api.themoviedb.org/3/search/movie?query=${searchword
+        .split(" ")
+        .join("+")}&page=${pageno}`;
+    }
 
-  //   console.log(posts.results);
-  return posts.results;
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: "Bearer " + TMBD_TOKEN,
+      },
+    };
+
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`); // Error handling for non-200 status
+    }
+
+    const data = await response.json();
+    // console.log(url, data);
+    return data.results;
+  } catch (err) {
+    console.log(err.message); // Set error message if fetch fails
+    return null;
+  }
 }
 
 export async function fetchDetails(url) {
+  //   const TMBD_TOKEN = process.env.NEXT_PUBLIC_TMDB_TOKEN;
+  //   console.log(TMBD_TOKEN);
+
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYjIyNWJmODM2ZTlhYzdhOWM4Y2ExZjAzYjc0MWE2NiIsIm5iZiI6MTczMDIwNTI1MS40MjkwOSwic3ViIjoiNjQ1YTIxOWIxNTZjYzcwMGUzOWU4YjM0Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.EZ8gBdTfpd6x6Y7l8cKeg9WTMIkMJhXe8-q4KE1ZlT0",
+      Authorization: "Bearer " + TMBD_TOKEN,
     },
   };
 
   let data = await fetch(url, options);
   let detail = await data.json();
 
-  console.log(detail);
   return detail;
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "./logo";
-import Modebtn from "./modebtn";
+// import Logo from "./logo";
+// import Modebtn from "./modebtn";
 
 function Navbar({ children }) {
   return (

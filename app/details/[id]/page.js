@@ -15,7 +15,7 @@ export default async function details({ params }) {
 
   return (
     <>
-      <section>
+      <section className="dark:bg-gray-900 dark:text-gray-100">
         <div className="container mx-auto p-4">
           <div className="flex flex-col md:flex-row items-start gap-8">
             {/* Movie Poster */}

@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import satoshi from "@/public/img/satoshi.jpg";
 
-function Card({ index, children }) {
+export default function Card({ index, children }) {
   const imgUrl = children?.poster_path
     ? `https://image.tmdb.org/t/p/original/${children?.poster_path}`
     : satoshi;
@@ -35,5 +35,3 @@ function Card({ index, children }) {
     </>
   );
 }
-
-export default Card;

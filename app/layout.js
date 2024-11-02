@@ -1,8 +1,10 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/navbar";
-import Logo from "@/components/logo";
-import Modebtn from "@/components/modebtn";
+import { ThemeProvider } from "next-themes";
+
+// import Navbar from "@/components/navbar";
+// import Logo from "@/components/logo";
+// import Modebtn from "@/components/modebtn";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,7 +28,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem={true}
+        >
+          <section className="h-screen dark:bg-gray-900 dark:text-gray-100">
+            {children}
+          </section>
+        </ThemeProvider>
       </body>
     </html>
   );
