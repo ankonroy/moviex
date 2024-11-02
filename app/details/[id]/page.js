@@ -4,29 +4,29 @@ import Image from "next/image";
 import Navbar from "@/components/navbar";
 import fetchData, { fetchAgain, fetchDetails } from "@/utils/util";
 
-// export async function getServerSideProps({ params }) {
-//   const { id } = params;
-//   const detailLink = `https://api.themoviedb.org/3/movie/${id}?`;
-
-//   const data = await fetchDetails(detailLink); // Fetch the movie data
-
-//   // Handle the case where data is unavailable or invalid
-//   if (!data) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   return {
-//     props: { data }, // Pass the data as props to the component
-//   };
-// }
-
-export default async function details({ params }) {
-  const { id } = await params;
-  //   console.log(params);
+export async function getServerSideProps({ params }) {
+  const { id } = params;
   const detailLink = `https://api.themoviedb.org/3/movie/${id}?`;
-  const data = await fetchDetails(detailLink);
+
+  const data = await fetchDetails(detailLink); // Fetch the movie data
+
+  // Handle the case where data is unavailable or invalid
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { data }, // Pass the data as props to the component
+  };
+}
+
+export default async function details({ data }) {
+  //   const { id } = await params;
+  //   console.log(params);
+  //   const detailLink = `https://api.themoviedb.org/3/movie/${id}?`;
+  //   const data = await fetchDetails(detailLink);
   const bdImage = data?.backdrop_path
     ? `https://image.tmdb.org/t/p/original/${data?.backdrop_path}`
     : satoshi;
@@ -115,11 +115,11 @@ export default async function details({ params }) {
   );
 }
 
-export async function generateStaticParams() {
-  //   const posts = await fetchData("now_playing", 1, "");
+// export async function generateStaticParams() {
+//   const posts = await fetchData("now_playing", 1, "");
 
-  //   return posts.map((post) => ({
-  //     id: post.id.toString(),
-  //   }));
-  return [];
-}
+//   return posts.map((post) => ({
+//     id: post.id.toString(),
+//   }));
+//   return [];
+// }
