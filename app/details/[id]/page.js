@@ -4,29 +4,29 @@ import Image from "next/image";
 import Navbar from "@/components/navbar";
 import fetchData, { fetchAgain, fetchDetails } from "@/utils/util";
 
-export async function getServerSideProps({ params }) {
-  const { id } = params;
-  const detailLink = `https://api.themoviedb.org/3/movie/${id}?`;
+// export async function getServerSideProps({ params }) {
+//   const { id } = params;
+//   const detailLink = `https://api.themoviedb.org/3/movie/${id}?`;
 
-  const data = await fetchDetails(detailLink); // Fetch the movie data
+//   const data = await fetchDetails(detailLink); // Fetch the movie data
 
-  // Handle the case where data is unavailable or invalid
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
+//   // Handle the case where data is unavailable or invalid
+//   if (!data) {
+//     return {
+//       notFound: true,
+//     };
+//   }
 
-  return {
-    props: { data }, // Pass the data as props to the component
-  };
-}
+//   return {
+//     props: { data }, // Pass the data as props to the component
+//   };
+// }
 
-export default async function details({ data }) {
-  //   const { id } = await params;
+export default async function details({ params }) {
+  const { id } = await params;
   //   console.log(params);
-  //   const detailLink = `https://api.themoviedb.org/3/movie/${id}?`;
-  //   const data = await fetchDetails(detailLink);
+  const detailLink = `https://api.themoviedb.org/3/movie/${id}?`;
+  const data = await fetchDetails(detailLink);
   const bdImage = data?.backdrop_path
     ? `https://image.tmdb.org/t/p/original/${data?.backdrop_path}`
     : satoshi;
@@ -116,10 +116,10 @@ export default async function details({ data }) {
 }
 
 // export async function generateStaticParams() {
-//   const posts = await fetchData("now_playing", 1, "");
+//   const posts = await fetchAgain();
 
 //   return posts.map((post) => ({
 //     id: post.id.toString(),
 //   }));
-//   return [];
+//   //   return [];
 // }

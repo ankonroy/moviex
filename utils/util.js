@@ -9,11 +9,11 @@ export default async function fetchData(
   pageno = 1,
   searchword = ""
 ) {
-  kw = keyword;
-  pn = pageno;
-  sw = searchword;
   try {
     let url = `https://api.themoviedb.org/3/movie/${keyword}?language=en-US&page=${pageno}`;
+    kw = keyword;
+    pn = pageno;
+    sw = searchword;
 
     if (searchword !== "") {
       url = `https://api.themoviedb.org/3/search/movie?query=${searchword
@@ -71,6 +71,8 @@ export async function fetchAgain() {
         .split(" ")
         .join("+")}&page=${pageno}`;
     }
+
+    console.log(url);
 
     const options = {
       method: "GET",
